@@ -126,7 +126,7 @@ const updateSpamNostrBand = async (lastUpdateBlockFilters: number) => {
 
   const lists: BlockName[] = ['eventsBlocked', 'pubkeysBlocked'];
   await Promise.allSettled(lists.map(async (list) => {
-    const API_METHOD = 'https://spam.nostr.band/spam_api?method=get_current_spam';
+    const API_METHOD = `${store.spamApi}?method=get_current_spam`;
     try {
       const view = list.replace('Blocked', '');
       const request = shortFetch(`${API_METHOD}&view=${view}`);

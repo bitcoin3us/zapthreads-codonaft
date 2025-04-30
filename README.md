@@ -129,6 +129,7 @@ Arguments:
    - `anchor` difficulty is ignored, it can be `0`
    - such message will be visible even with too low PoW if moderator/author/current user follows the commenter
      - unless (`disable="followIsApproval"` is set)
+ - `spam-api`: default is `https://spam.nostr.band/spam_api`
 
 ## Customize
 

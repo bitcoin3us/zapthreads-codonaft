@@ -26,6 +26,7 @@ export const store = createMutable<PreferencesStore>({
   writePowDifficulty: 0,
   minReadPow: 0,
   maxWritePow: 0,
+  spamApi: '',
   lists: {
     eventsBlocked: new Set,
     pubkeysBlocked: new Set,
@@ -105,6 +106,7 @@ export type PreferencesStore = {
   writePowDifficulty: number;
   minReadPow: number;
   maxWritePow: number;
+  spamApi: string,
   lists: {
     eventsBlocked: Set<Eid>;
     pubkeysBlocked: Set<Pk>;

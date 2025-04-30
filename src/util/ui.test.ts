@@ -13,6 +13,7 @@ describe("ui utils", () => {
       profileRelays: [],
       readRelays: [],
       writeRelays: [],
+      spamApi: '',
       filter: {},
       additionalTags: [],
       maxCommentLength: 0,

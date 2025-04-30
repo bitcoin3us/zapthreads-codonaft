@@ -66,6 +66,7 @@ const ZapThreads = (props: { [key: string]: string; }) => {
     store.maxWritePow = maxWritePow();
     store.writePowDifficulty = Math.max(store.writePowDifficulty, minReadPow());
     store.community = props.community;
+    store.spamApi = props.spamApi || 'https://spam.nostr.band/spam_api';
     validateAndSetLanguage(props.language);
 
     const client = props.client.trim();
@@ -442,6 +443,7 @@ customElement<ZapThreadsAttributes>('zap-threads', {
   'max-comment-length': '',
   'min-read-pow': '',
   'max-write-pow': '',
+  'spam-api': '',
 }, (props) => {
   return <ZapThreads
     anchor={props['anchor'] ?? ''}
@@ -459,11 +461,12 @@ customElement<ZapThreadsAttributes>('zap-threads', {
     maxCommentLength={props['max-comment-length'] ?? ''}
     minReadPow={props['min-read-pow'] ?? ''}
     maxWritePow={props['max-write-pow'] ?? ''}
+    spamApi={props['spam-api'] ?? ''}
   />;
 });
 
 export type ZapThreadsAttributes = {
-  [key in 'anchor' | 'version' | 'relays' | 'profile-relays' | 'author' | 'community' | 'disable' | 'urls' | 'reply-placeholder' | 'legacy-url' | 'language' | 'client' | 'max-comment-length' | 'min-read-pow' | 'max-write-pow']?: string;
+  [key in 'anchor' | 'version' | 'relays' | 'profile-relays' | 'author' | 'community' | 'disable' | 'urls' | 'reply-placeholder' | 'legacy-url' | 'language' | 'client' | 'max-comment-length' | 'min-read-pow' | 'max-write-pow' | 'spam-api']?: string;
 } & JSX.HTMLAttributes<HTMLElement>;
 
 ZapThreads.onLogin = function (cb?: (options: { knownUser: boolean; }) => Promise<{ accepted: boolean; autoLogin: boolean; }>) {
