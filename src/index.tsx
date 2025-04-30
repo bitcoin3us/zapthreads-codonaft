@@ -55,6 +55,9 @@ const ZapThreads = (props: { [key: string]: string; }) => {
       store.externalAuthor = decode(props.author).data as string;
     }
 
+    store.profileRelays = (props.profileRelays || 'wss://purplepag.es,wss://hist.nostr.land')
+      .split(',')
+      .map(i => nostrNormalizeURL(new URL(i).toString()));
     store.disableFeatures = props.disable.split(',').map(e => e.trim()).filter(isDisableType);
     store.urlPrefixes = parseUrlPrefixes(props.urls);
     store.replyPlaceholder = props.replyPlaceholder;
@@ -428,6 +431,7 @@ customElement<ZapThreadsAttributes>('zap-threads', {
   community: "",
   version: "",
   relays: "",
+  'profile-relays': "",
   author: "",
   disable: "",
   urls: "",
@@ -443,6 +447,7 @@ customElement<ZapThreadsAttributes>('zap-threads', {
     anchor={props['anchor'] ?? ''}
     version={props['version'] ?? ''}
     relays={props['relays'] ?? ''}
+    profileRelays={props['profile-relays'] ?? ''}
     author={props['author'] ?? ''}
     community={props['community'] ?? ''}
     disable={props['disable'] ?? ''}
@@ -458,7 +463,7 @@ customElement<ZapThreadsAttributes>('zap-threads', {
 });
 
 export type ZapThreadsAttributes = {
-  [key in 'anchor' | 'version' | 'relays' | 'author' | 'community' | 'disable' | 'urls' | 'reply-placeholder' | 'legacy-url' | 'language' | 'client' | 'max-comment-length' | 'min-read-pow' | 'max-write-pow']?: string;
+  [key in 'anchor' | 'version' | 'relays' | 'profile-relays' | 'author' | 'community' | 'disable' | 'urls' | 'reply-placeholder' | 'legacy-url' | 'language' | 'client' | 'max-comment-length' | 'min-read-pow' | 'max-write-pow']?: string;
 } & JSX.HTMLAttributes<HTMLElement>;
 
 ZapThreads.onLogin = function (cb?: (options: { knownUser: boolean; }) => Promise<{ accepted: boolean; autoLogin: boolean; }>) {

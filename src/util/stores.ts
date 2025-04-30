@@ -12,6 +12,7 @@ import { NestedNoteEvent } from "./nest.ts";
 export const store = createMutable<PreferencesStore>({
   ready: newSignal(false),
 
+  profileRelays: [],
   readRelays: [],
   writeRelays: [],
   rootEventIds: [],
@@ -87,6 +88,7 @@ export type PreferencesStore = {
   ready: Signal<boolean>;
 
   anchor?: Anchor; // derived from anchor prop
+  profileRelays: string[];
   readRelays: string[];
   writeRelays: string[];
   version?: string;  // derived from version prop

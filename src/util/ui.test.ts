@@ -10,6 +10,7 @@ describe("ui utils", () => {
   describe("parseContent", () => {
     const store = createMutable<PreferencesStore>({
       ready: newSignal(false),
+      profileRelays: [],
       readRelays: [],
       writeRelays: [],
       filter: {},

@@ -24,7 +24,6 @@ import { bytesToHex } from "@noble/hashes/utils";
 
 export const NOTE_KINDS = [ShortTextNote, Highlights];
 export const CONTENT_KINDS = [...NOTE_KINDS, Reaction, Zap];
-export const PROFILE_RELAYS = ['wss://purplepag.es/', 'wss://hist.nostr.land/'];
 
 type SubscribeManyParams = SubscribeManyParamsDefault & { oneoseOnRelay?: (relay: string) => void; };
 
@@ -142,7 +141,7 @@ class PrioritizedPool {
         store.readRelays = readRelays;
       }
     }));
-    console.log(`[zapthreads] readRelays=${JSON.stringify(store.readRelays)} writeRelays=${JSON.stringify(store.writeRelays)}`);
+    console.log(`[zapthreads] readRelays=${JSON.stringify(store.readRelays)} writeRelays=${JSON.stringify(store.writeRelays)} profileRelays=${JSON.stringify(store.profileRelays)}`);
     await this.updateWritePow();
 
     if (loggedIn && !requestedFromProfile) {
@@ -340,7 +339,7 @@ class PrioritizedPool {
     filter: Filter,
     params?: Pick<SubscribeManyParams, 'id' | 'maxWait'>,
   ): Promise<Event | undefined> {
-    let relays = [...store.readRelays, ...store.writeRelays, ...PROFILE_RELAYS];
+    let relays = [...store.readRelays, ...store.writeRelays, ...store.profileRelays];
     if (signersStore.active) {
       const profileRelays = await find('profileRelays', IDBKeyRange.only(signersStore.active.pk));
       if (profileRelays) {

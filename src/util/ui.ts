@@ -10,7 +10,7 @@ import { linkify } from 'remarkable/linkify';
 import { findAll, save } from "./db.ts";
 import { store } from "./stores.ts";
 import { NoteEvent, Profile, Pk, Eid, ReactionEvent } from "./models.ts";
-import { pool, rankRelays, PROFILE_RELAYS, manualLogin } from "./network.ts";
+import { pool, rankRelays, manualLogin } from "./network.ts";
 import { currentTime } from "./date-time.ts";
 import { generatePicture } from "./picture.ts";
 
@@ -44,7 +44,7 @@ export const updateProfiles = async (pks: Set<Pk>, relays: string[], profiles: P
     .filter(([pk, p]) => pubkeysToUpdate.has(pk))
     .map(([_, p]) => p.l ? p.l + 1 : 0));
 
-  const { fastRelays, slowRelays } = await rankRelays([...relays, ...PROFILE_RELAYS], { kind });
+  const { fastRelays, slowRelays } = await rankRelays([...relays, ...store.profileRelays], { kind });
   const filters = [{ kinds: [kind], authors: [...pubkeysToUpdate], since: since === Infinity ? 0 : since }];
   const update = async (relays: string[]) => {
     if (relays.length === 0) return;

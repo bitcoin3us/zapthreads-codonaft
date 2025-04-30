@@ -1,7 +1,7 @@
 import { Index, Show, createEffect, createComputed, createMemo, createSignal, onCleanup, batch, on, onMount } from "solid-js";
 import { picturePlaceholder, parseContent, shortenEncodedId, svgWidth, totalChildren, errorText, getSigner } from "./util/ui.ts";
 import { DAY_IN_SECS, WEEK_IN_SECS, currentTime, sortByDate, timeAgo } from "./util/date-time.ts";
-import { signAndPublishEvent, manualLogin, validateNestedNoteEvent, pool, PROFILE_RELAYS } from "./util/network.ts";
+import { signAndPublishEvent, manualLogin, validateNestedNoteEvent, pool } from "./util/network.ts";
 import { ReplyEditor } from "./reply.tsx";
 import { NestedNoteEvent } from "./util/nest.ts";
 import { Votes } from "./votes.tsx";

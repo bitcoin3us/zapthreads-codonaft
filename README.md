@@ -90,6 +90,7 @@ Arguments:
    - ID of the event to show in case a naddr (long-form note) has multiple versions
  - `relays`: comma-separated list of relays, unset by default (will not load any content)
    - if any relays are set in the NIP-07 extension — `relays` will be overwritten after logging in
+ - `profile-relays`: comma-separated list of relays, `wss://purplepag.es,wss://hist.nostr.land` by default
  - `author`:
    - This npub will be added as a `p` tag to all comments
    - Useful for notifying the author of a website (http anchor)
