@@ -566,7 +566,7 @@ export const powIsOk = (id: Eid, powOrTags: number | string[][], minPow: number)
 const writeOnlyRelay = (relayInfo?: RelayInfo) => relayInfo?.writeOnly === true;
 
 const supportedReadRelay = (info?: RelayInformation, relayInfo?: RelayInfo) => {
-  if (relayInfo?.readAuth === true) return false;
+  //if (relayInfo?.readAuth === true) return false;
   if (!info) return true;
 
   const language = store.language;
