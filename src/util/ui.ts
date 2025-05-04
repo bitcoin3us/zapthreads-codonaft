@@ -21,8 +21,8 @@ export const updateProfiles = async (pks: Set<Pk>, relays: string[], profiles: P
   pubkeys.forEach(pk => store.requestedProfileUpdate.add(pk));
 
   const kind = Metadata;
-  const now = +new Date;
-  const sixHours = 21600000;
+  const now = currentTime();
+  const sixHours = 6 * 60 * 60;
 
   const _profiles: [Pk, Profile][] = profiles.map(p => [p.pk, p]);
   const _pkToProfile: Map<Pk, Profile> = new Map(_profiles);
